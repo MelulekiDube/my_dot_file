@@ -1,7 +1,7 @@
 # >>> dotfiles-zsh-setup: core <<<
 
 # Base directories
-export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+export DOTFILES_DIR="${DOTFILES_DIR:-$HOME/my_dot_file}"
 export ZSH_DIR="$DOTFILES_DIR/zsh"
 export ZSH_CONF_DIR="$ZSH_DIR/conf.d"
 

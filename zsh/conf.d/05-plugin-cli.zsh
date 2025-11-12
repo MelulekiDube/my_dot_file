@@ -1,6 +1,6 @@
 # Handy wrapper: `plugin add xxx/yyy`, `plugin remove`, `plugin list`, etc.
 plugin() {
-  "$HOME/.dotfiles/plugins.sh" "$@"
+  "$HOME/my_dot_file/plugins.sh" "$@"
   # If we changed plugin set, rebuild + source immediately
   if [[ "$1" == "add" || "$1" == "remove" || "$1" == "preset" ]]; then
     autoload -Uz antidote 2>/dev/null || true

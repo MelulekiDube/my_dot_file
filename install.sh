@@ -74,7 +74,7 @@ fi
 
 # ----- Link files (backup old zshrc with timestamp) -----
 if [[ -f "$TARGET_ZSHRC" && ! -L "$TARGET_ZSHRC" ]]; then
-  backup_name="$HOME/old_$(date +%Y%m%d_%H%M%S)_.zshrc"
+  backup_name="$HOME/zshrc.old_$(date +%Y%m%d_%H%M%S)_"
   mv "$TARGET_ZSHRC" "$backup_name"
   info "Moved existing .zshrc to: $backup_name"
 fi

@@ -12,7 +12,7 @@ inject_omz_custom() {
   # plugin wrapper (works with Antidote + ~/.zsh_plugins.txt)
   cat > "$omz_custom/05-plugin-cli.zsh" <<'EOF'
 plugin() {
-  "$HOME/.dotfiles/plugins.sh" "$@" || return $?
+  "$HOME/my_dot_file/plugins.sh" "$@" || return $?
   case "$1" in
     add|remove|preset)
       autoload -Uz antidote 2>/dev/null || true
