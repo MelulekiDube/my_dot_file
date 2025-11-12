@@ -9,4 +9,4 @@ plugin() {
   fi
 }
 # minimal completion for the wrapper (optional)
-compdef '_arguments : :((add\:Add remove\:Remove list\:List upgrade\:Upgrade preset\:Preset doctor\:Doctor))' plugin
+type compdef >/dev/null 2>&1 && compdef '_arguments : :((add\:Add remove\:Remove list\:List upgrade\:Upgrade preset\:Preset doctor\:Doctor))' plugin

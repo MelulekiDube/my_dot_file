@@ -34,3 +34,5 @@ fi
 [[ -r "$HOME/.zsh.local" ]] && source "$HOME/.zsh.local"
 
 # >>> dotfiles-zsh-setup: core <<<
+
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting history-substring-search z)

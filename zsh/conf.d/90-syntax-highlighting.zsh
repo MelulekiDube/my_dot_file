@@ -1,7 +1,10 @@
-# Must be after compinit and other plugins
+# Load after the plugin; be robust if it isn't there yet
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
-# Example styles (tweak to taste)
+# Ensure styles map exists even if plugin hasn’t created it yet
+typeset -gA ZSH_HIGHLIGHT_STYLES
+
+# Set a few nice defaults
 ZSH_HIGHLIGHT_STYLES[comment]='fg=8'
 ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=160,bold'
 ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=33,bold'

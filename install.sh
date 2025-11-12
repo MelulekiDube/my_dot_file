@@ -72,6 +72,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   warn "If you prefer the minimal Antidote setup, you can keep OMZ or remove it later: rm -rf ~/.oh-my-zsh"
 fi
 
+
 # ----- Link files (backup old zshrc with timestamp) -----
 if [[ -f "$TARGET_ZSHRC" && ! -L "$TARGET_ZSHRC" ]]; then
   backup_name="$HOME/zshrc.old_$(date +%Y%m%d_%H%M%S)_"
@@ -80,7 +81,17 @@ if [[ -f "$TARGET_ZSHRC" && ! -L "$TARGET_ZSHRC" ]]; then
 fi
 
 ln -sf "$ZSH_DIR/.zshrc" "$TARGET_ZSHRC"
-ln -sf "$ZSH_DIR/local.example.zsh" "$TARGET_LOCAL" 2>/dev/null || true
+# Old (forces link):
+# ln -sf "$ZSH_DIR/local.example.zsh" "$TARGET_LOCAL" 2>/dev/null || true
+
+# New (create if missing, never overwrite your custom file):
+# Create local.zsh if missing — don’t overwrite user’s custom file
+if [[ ! -e "$TARGET_LOCAL" ]]; then
+  cp -n "$ZSH_DIR/local.example.zsh" "$TARGET_LOCAL" 2>/dev/null || true
+else
+  info "Preserving existing ~/.zsh.local"
+fi
+
 
 # Ensure plugins list exists (link if present in repo, else create empty)
 if [[ -f "$PLUGINS_TXT" ]]; then
@@ -94,6 +105,11 @@ if [[ -f "$REPO_DIR/plugins.sh" ]]; then
   chmod +x "$REPO_DIR/plugins.sh"
   info "Plugin helper available: $REPO_DIR/plugins.sh (or use 'plugin' function if configured)"
 fi
+
+# Ensure personal alias files exist
+[[ -f "$HOME/.zsh_aliases" ]] || touch "$HOME/.zsh_aliases"
+mkdir -p "$HOME/.zsh_aliases.d"
+
 
 info "Install complete.
 - Edit ~/.zsh_plugins.txt to add/remove plugins (Antidote-managed)
