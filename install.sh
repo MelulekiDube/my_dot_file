@@ -21,7 +21,7 @@ if [[ -f /etc/os-release ]]; then
 fi
 info "Detected OS: $OS"
 
-# ----- Ensure Zsh only (you said Git is installed) -----
+# ----- Ensure zsh only (you said Git is installed) -----
 if ! need zsh; then
   case "$OS" in
     debian) sudo apt-get update && sudo apt-get install -y zsh ;;
@@ -65,19 +65,38 @@ if (( INSTALL_FONTS )); then
   esac
 fi
 
-# ----- Link files -----
-mkdir -p "$HOME"
+# ----- Prepare directories & warn about OMZ -----
+mkdir -p "$HOME" "$ZSH_DIR" "$ZSH_DIR/conf.d"
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  warn "Detected ~/.oh-my-zsh. If you plan to use OMZ via ./setup.sh 2, that's fine."
+  warn "If you prefer the minimal Antidote setup, you can keep OMZ or remove it later: rm -rf ~/.oh-my-zsh"
+fi
+
+# ----- Link files (backup old zshrc with timestamp) -----
 if [[ -f "$TARGET_ZSHRC" && ! -L "$TARGET_ZSHRC" ]]; then
-  cp "$TARGET_ZSHRC" "${TARGET_ZSHRC}.bak.$(date +%s)"
-  info "Backed up existing .zshrc to ${TARGET_ZSHRC}.bak.*"
+  backup_name="$HOME/old_$(date +%Y%m%d_%H%M%S)_.zshrc"
+  mv "$TARGET_ZSHRC" "$backup_name"
+  info "Moved existing .zshrc to: $backup_name"
 fi
 
 ln -sf "$ZSH_DIR/.zshrc" "$TARGET_ZSHRC"
 ln -sf "$ZSH_DIR/local.example.zsh" "$TARGET_LOCAL" 2>/dev/null || true
-ln -sf "$PLUGINS_TXT" "$HOME/.zsh_plugins.txt"
+
+# Ensure plugins list exists (link if present in repo, else create empty)
+if [[ -f "$PLUGINS_TXT" ]]; then
+  ln -sf "$PLUGINS_TXT" "$HOME/.zsh_plugins.txt"
+else
+  : > "$HOME/.zsh_plugins.txt"
+fi
+
+# Make plugin CLI executable if you added it
+if [[ -f "$REPO_DIR/plugins.sh" ]]; then
+  chmod +x "$REPO_DIR/plugins.sh"
+  info "Plugin helper available: $REPO_DIR/plugins.sh (or use 'plugin' function if configured)"
+fi
 
 info "Install complete.
-- Edit ~/.zsh_plugins.txt to add/remove plugins
+- Edit ~/.zsh_plugins.txt to add/remove plugins (Antidote-managed)
 - Optional: run ./setup.sh to switch to Oh-My-Zsh/Prezto/YADR
 - Reload shell with: exec zsh
 - Pass --no-fonts to skip font install on servers"
