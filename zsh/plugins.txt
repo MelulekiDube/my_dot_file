@@ -1,0 +1,21 @@
+# Core
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-syntax-highlighting   # keep LAST
+
+# Navigation / productivity
+ajeetdsouza/zoxide
+junegunn/fzf
+unixorn/fzf-zsh-plugin
+
+# Git QoL
+wfxr/forgit
+tj/git-extras
+
+# Containers / k8s (optional)
+greymd/docker-zsh-completion
+superbrothers/zsh-kubectl-prompt
+
+# Optional prompt (if you ever switch)
+# romkatv/powerlevel10k
