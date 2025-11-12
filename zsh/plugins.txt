@@ -1,8 +1,5 @@
 # Core
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-completions
-zsh-users/zsh-history-substring-search
-zsh-users/zsh-syntax-highlighting   # keep LAST
+# keep LAST
 
 # Navigation / productivity
 ajeetdsouza/zoxide

@@ -51,15 +51,19 @@ if (( INSTALL_FONTS )); then
       fi
       brew tap homebrew/cask-fonts || true
       brew install --cask font-meslo-lg-nerd-font || true
+      brew install zoxide
       ;;
     debian)
       sudo apt-get update && sudo apt-get install -y fonts-powerline || true
       ;;
     rhel)
       if command -v dnf >/dev/null 2>&1; then
-        sudo dnf install -y powerline-fonts || true
+        sudo dnf install -y fzf || true
+        sudo dnf install -y zoxide || echo "zoxide not in repos; skipping"
+        sudo dnf install -y git-extras || echo "git-extras not in repos; skipping"
       else
-        sudo yum install -y powerline-fonts || true
+        sudo yum install -y fzf || true
+        sudo yum install -y git-extras || true
       fi
       ;;
   esac

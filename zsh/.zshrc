@@ -35,4 +35,4 @@ fi
 
 # >>> dotfiles-zsh-setup: core <<<
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting history-substring-search z)
+plugins=(git z history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
