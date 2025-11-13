@@ -1,0 +1,68 @@
+# ---- General OS clutter ----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*~
+*.bak
+*.log
+
+# ---- Zsh history and cache ----
+.zsh_history
+.zsh_sessions
+.zcompdump*
+.zsh_cache/
+.zsh_plugins.zsh
+.zsh_plugins.txt.bak*
+.zshrc.bak.*
+.zshrc.pre-oh-my-zsh
+.zshrc.pre-antidote
+.zshrc.pre-zsh
+.zlogin.bak.*
+.zlogout.bak.*
+.zpreztorc.bak.*
+.zprofile.bak.*
+.zshenv.bak.*
+
+# ---- Local overrides (per-machine) ----
+.zsh.local
+.zsh_aliases
+.zsh_aliases.bak.*
+zsh/local.example.zsh
+zsh/conf.d/*.local.zsh
+
+# ---- Antidote / OMZ caches ----
+.antidote/
+.cache/
+.cache/antidote/
+.cache/zsh/
+.oh-my-zsh/custom/*.zsh-theme
+.oh-my-zsh/custom/*.zshrc
+.oh-my-zsh/custom/45-history-bindings.zsh
+.oh-my-zsh/log/
+.oh-my-zsh/custom/example.zsh
+.oh-my-zsh/cache/
+
+# ---- Fonts / Powerline ----
+*.ttf
+*.otf
+
+# ---- Backup or install artifacts ----
+install.sh.bak*
+setup.sh.bak*
+*.bak.*
+*.old
+*.orig
+*.rej
+
+# ---- Miscellaneous ----
+env/
+venv/
+__pycache__/
+.idea/
+.vscode/
+
+
+# Git extra installs
+git-extras-install.*
